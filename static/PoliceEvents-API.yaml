@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: Police Events API
+  version: '1.0'
+  contact:
+    name: Admin
+    email: admin@example.com
+    url: 'https://www.example.com'
+  termsOfService: 'https://www.example.com/tos'
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0'
+  description: An API to access police events data
+servers:
+  - url: 'http://localhost:5000/api/v1'
+paths:
+  '/events':
+    get:
+      summary: GET all events
+      tags:
+        - events
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '500':
+          description: Internal Server Error
+      operationId: get-events
+      description: Get a list of all events
+    post:
+      summary: POST a new event
+      operationId: post-api-v1-events
+      responses:
+        '200':
+          description: OK
+          headers:
+            Location:
+              schema:
+                type: string
+              description: Location of newly created event
+        '500':
+          description: Internal Server Error
+      description: Add an event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventInput'
+      tags:
+        - events
+components:
+  schemas:
+    Event:
+      title: Event
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+          description: Event title
+        summary:
+          type: string
+          description: Event summary
+        url:
+          type: string
+          description: Event URL
+        type:
+          type: string
+          description: Event type
+        location:
+          type: string
+          description: Event location
+        datetime:
+          type: string
+          description: Event date and time
+      required:
+        - id
+        - title
+        - summary
+        - url
+        - datetime
+    EventInput:
+      title: EventInput
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+          description: Event title
+        summary:
+          type: string
+          description: Event summary
+        url:
+          type: string
+          description: Event URL
+        type:
+          type: string
+          description: Event type
+        location:
+          type: string
+          description: Event location
+        datetime:
+          type: string
+          description: Event date and time
+      required:
+        - id
+        - title
+        - summary
+        - url
+        - datetime
+tags:
+  - name: events
+    description: Operations relevant to events
+
+
+
+
