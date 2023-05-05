@@ -1,7 +1,9 @@
 # IncLio
 
+### Billy Lundh , Dominiqa Zainaei & Anton Yemortaji
 
-Hur man kommer igång med projektet från start (om man klonar GitHub-repot för
+
+## Hur man kommer igång med projektet från start (om man klonar GitHub-repot för
 första gången)
 
 ### 1. Klona repot 
