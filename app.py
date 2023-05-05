@@ -18,7 +18,7 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
     config={
-        'app_name': "Police Events API"
+        'app_name': " Events API"
     }
 )
 
@@ -94,6 +94,33 @@ def create_event():
     response = jsonify(event.external_id), 201
     response[0].headers.set('Location', f'/api/v1/events/{event.external_id}')
     return response
+
+
+@app.route('/api/v1/events/<string:event_type>/count', methods=['GET'])
+def count_events_by_type(event_type):
+    events = Event.query.filter_by(type=event_type).all()
+    count = len(events)
+
+    return jsonify({'count': count}), 200
+
+
+
+@app.route('/api/v1/events/latest', methods=['GET'])
+def get_latest_events():
+    events = Event.query.order_by(Event.datetime.desc()).limit(10).all()
+
+    events_list = [{
+        "id": event.external_id,
+        "title": event.title,
+        "summary": event.summary,
+        "url": event.url,
+        "type": event.type,
+        "location": event.location,
+        "datetime": event.datetime
+    } for event in events]
+
+    return jsonify(events_list), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True)
