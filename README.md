@@ -3,8 +3,7 @@
 ### Billy Lundh , Dominiqa Zainaei & Anton Yemortaji
 
 
-## Hur man kommer igång med projektet från start (om man klonar GitHub-repot för
-första gången)
+## Hur man kommer igång med projektet från start.
 
 ### 1. Klona repot 
 ### 2.gå till lokallänk http://127.0.0.1:5000  
